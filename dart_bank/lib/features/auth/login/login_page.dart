@@ -35,12 +35,13 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
           child: ConstrainedBox(
             constraints: BoxConstraints(
-              maxHeight: MediaQuery.of(context).size.height,
+              maxHeight: size.height,
             ),
             child: Column(
               children: [
@@ -61,28 +62,26 @@ class _LoginPageState extends State<LoginPage> {
                       width: double.infinity,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const SizedBox(
-                            height: 40,
-                          ),
                           Image.asset(
                             'assets/icon/logo.png',
-                            width: 215, // o Image tem tamanho, não precisa colocar expanded com container vazio
+                            width: 0.55 *
+                                size.width, // o Image tem tamanho, não precisa colocar expanded com container vazio
+                            height: 0.25 *
+                                size.height, // o Image tem tamanho, não precisa colocar expanded com container vazio
                           ),
-                          const SizedBox(
-                            height: 10,
+                          SizedBox(
+                            height: 0.01 * size.height,
                           ),
                           const Text('Seja bem-vindo ao Dart Bank!',
                               style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white)),
-                          const SizedBox(
-                            height: 10,
+                          SizedBox(
+                            height: 0.01 * size.height,
                           ),
                           const Text(
                             "Já possui conta? Identifique-se ",
                             style: TextStyle(color: Colors.white),
-                          ),
-                          const SizedBox(
-                            height: 20,
                           ),
                         ],
                       ),
