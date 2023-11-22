@@ -1,8 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:dart_bank/repositories/account_types_repository.dart';
-import 'package:dart_bank/widgets/text_label_widgets.dart';
+import 'dart:developer';
+
+import 'package:dart_bank/core/widgets/text_label_widgets.dart';
 import 'package:flutter/material.dart';
+
+import '../repositories/account_types_repository.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({
@@ -23,7 +26,7 @@ class _RegisterPageState extends State<RegisterPage> {
   var numberAddController = TextEditingController(text: "");
   var cityAddController = TextEditingController(text: "");
   var stateAddController = TextEditingController(text: "");
-  var roadAddController = TextEditingController(text: "");
+  var streetAddController = TextEditingController(text: "");
   var neighborhoodAddController = TextEditingController(text: "");
   DateTime? birthDate;
   var typesRepository = AccountTypesRepository();
@@ -32,9 +35,8 @@ class _RegisterPageState extends State<RegisterPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
+    super.initState(); // super.initState() sempre no começo
     types = typesRepository.returnTypes();
-    super.initState();
   }
 
   @override
@@ -44,10 +46,15 @@ class _RegisterPageState extends State<RegisterPage> {
         title: Center(child: Text("Cadastro")),
       ),
       body: Padding(
-        padding: EdgeInsets.all(8.0),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          const TextLabel(
-            textlabel: "Nome Completo",
+        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        child: ListView(// Troquei o column por listview pq já tem Scroll
+            //crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 12.0),
+            child: const TextLabel(
+              textlabel: "Nome Completo",
+            ),
           ),
           TextField(
               controller: nameController,
@@ -56,14 +63,20 @@ class _RegisterPageState extends State<RegisterPage> {
                 Icons.person,
                 color: Color.fromARGB(255, 23, 134, 71),
               ))),
-          const TextLabel(
-            textlabel: "cpf",
+          Padding(
+            padding: const EdgeInsets.only(top: 12.0),
+            child: const TextLabel(
+              textlabel: "cpf",
+            ),
           ),
           TextField(
             controller: numberIdController,
           ),
-          const TextLabel(
-            textlabel: "Telefone",
+          Padding(
+            padding: const EdgeInsets.only(top: 12.0),
+            child: const TextLabel(
+              textlabel: "Telefone",
+            ),
           ),
           TextField(
               controller: emailController,
@@ -72,7 +85,10 @@ class _RegisterPageState extends State<RegisterPage> {
                 Icons.no_cell_rounded,
                 color: Color.fromARGB(255, 23, 134, 71),
               ))),
-          TextLabel(textlabel: "Data de nascimento"),
+          Padding(
+            padding: const EdgeInsets.only(top: 12.0),
+            child: TextLabel(textlabel: "Data de nascimento"),
+          ),
           TextField(
             controller: birthDateController,
             readOnly: true,
@@ -88,8 +104,11 @@ class _RegisterPageState extends State<RegisterPage> {
               }
             },
           ),
-          const TextLabel(
-            textlabel: "email",
+          Padding(
+            padding: const EdgeInsets.only(top: 12.0),
+            child: const TextLabel(
+              textlabel: "email",
+            ),
           ),
           TextField(
               controller: emailController,
@@ -98,8 +117,11 @@ class _RegisterPageState extends State<RegisterPage> {
                 Icons.email,
                 color: Color.fromARGB(255, 23, 134, 71),
               ))),
-          const TextLabel(
-            textlabel: "senha",
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: const TextLabel(
+              textlabel: "senha",
+            ),
           ),
           TextField(
               controller: passwordController,
@@ -108,7 +130,10 @@ class _RegisterPageState extends State<RegisterPage> {
                 Icons.key,
                 color: Color.fromARGB(255, 23, 134, 71),
               ))),
-          const TextLabel(textlabel: "Tipo de conta:"),
+          Padding(
+            padding: const EdgeInsets.only(top: 12.0),
+            child: const TextLabel(textlabel: "Tipo de conta:"),
+          ),
           Column(
               children: types
                   .map((type) => RadioListTile(
@@ -118,103 +143,110 @@ class _RegisterPageState extends State<RegisterPage> {
                       value: type.toString(),
                       groupValue: typeSelected,
                       onChanged: (value) {
-                        print(value);
+                        log('$value'); // log deixa o print destacado no console
                         setState(() {
                           typeSelected = value.toString();
                         });
                       }))
                   .toList()),
-          const TextLabel(
-            textlabel: "rua",
+          Padding(
+            padding: const EdgeInsets.only(top: 12.0),
+            child: const TextLabel(
+              textlabel: "rua",
+            ),
           ),
           TextField(
-            controller: roadAddController,
+            controller: streetAddController,
+            decoration: const InputDecoration(
+                prefixIcon: Icon(
+              Icons.add_road,
+              color: Color.fromARGB(255, 23, 134, 71),
+            )),
           ),
-          const TextLabel(
-            textlabel: "bairro",
+          Padding(
+            padding: const EdgeInsets.only(top: 12.0),
+            child: const TextLabel(
+              textlabel: "bairro",
+            ),
           ),
           TextField(
             controller: neighborhoodAddController,
           ),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const TextLabel(textlabel: "CEP"),
-                        TextField(controller: cepController),
-                      ],
-                    ),
-                  ),
-                ],
+              Padding(
+                padding: const EdgeInsets.only(top: 12.0),
+                child: const TextLabel(textlabel: "CEP"),
               ),
+              TextField(controller: cepController),
               Row(
                 children: [
                   Expanded(
+                    flex: 3,
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        const TextLabel(textlabel: "Número"),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 12.0),
+                          child: const TextLabel(textlabel: "Número"),
+                        ),
                         TextField(controller: numberAddController),
                       ],
                     ),
                   ),
+                  SizedBox(
+                    width: 8,
+                  ),
                   Expanded(
+                    flex: 6,
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        const TextLabel(textlabel: "Cidade"),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 12.0),
+                          child: const TextLabel(textlabel: "Cidade"),
+                        ),
                         TextField(controller: cityAddController),
                       ],
                     ),
                   ),
                 ],
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const TextLabel(textlabel: "Estado"),
-                        TextField(controller: stateAddController),
-                      ],
-                    ),
-                  ),
-                ],
+              Padding(
+                padding: const EdgeInsets.only(top: 12.0),
+                child: const TextLabel(textlabel: "Estado"),
               ),
+              TextField(controller: stateAddController),
             ],
           ),
           Center(
             child: TextButton(
-                onPressed: () {
-                  if (nameController.text.trim().length < 3) {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text("Nome deve ser preenchido")));
-                    return;
-                  }
-                  if (birthDate == null) {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content:
-                            Text("Data de nascimento deve ser preenchida!")));
-                    return;
-                  }
-                  if (typeSelected.trim() == "") {
-                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                        content: Text("O tipo de conta deve ser selecionada")));
-                    return;
-                  }
-                  print(nameController.text);
-                  print(birthDate);
-                  print(typeSelected);
-                },
-                child: Text("Salvar")),
+              // Separar código em um metodo
+              onPressed: _onSavePressed, child: Text("Salvar"),
+            ),
           )
         ]),
       ),
     );
+  }
+
+  void _onSavePressed() {
+    if (nameController.text.trim().length < 3) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Nome deve ser preenchido")));
+      return;
+    }
+    if (birthDate == null) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text("Data de nascimento deve ser preenchida!")));
+      return;
+    }
+    if (typeSelected.trim() == "") {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("O tipo de conta deve ser selecionada")));
+      return;
+    }
+    log(nameController.text);
+    log('$birthDate');
+    log(typeSelected);
   }
 }

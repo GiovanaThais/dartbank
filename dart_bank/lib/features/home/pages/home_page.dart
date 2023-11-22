@@ -1,8 +1,9 @@
-import 'package:dart_bank/pages/home/page1.dart';
-import 'package:dart_bank/pages/home/page2.dart';
-import 'package:dart_bank/pages/home/page3.dart';
-import 'package:dart_bank/pages/home/register_page.dart';
+import 'package:dart_bank/features/auth/register/register_page.dart';
 import 'package:flutter/material.dart';
+
+import 'page1.dart';
+import 'page2.dart';
+import 'page3.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
@@ -16,6 +17,20 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int pagePosition = 0;
   PageController controller = PageController(initialPage: 0);
+
+  // colocar as listas em variaveis
+  final pagesList = <Widget>[
+    const Page1(),
+    const Page2(),
+    const Page3(),
+  ];
+
+  final navigationBarList = const [
+    BottomNavigationBarItem(label: "Pag1", icon: Icon(Icons.home)),
+    BottomNavigationBarItem(label: "Pag2", icon: Icon(Icons.add)),
+    BottomNavigationBarItem(label: "Pag3", icon: Icon(Icons.person)),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -41,8 +56,7 @@ class _HomePageState extends State<HomePage> {
                     Navigator.pop(context);
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => const RegisterPage()),
+                      MaterialPageRoute(builder: (context) => const RegisterPage()),
                     );
                   },
                 ),
@@ -74,32 +88,23 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ),
-        body: Expanded(
-          child: PageView(
-            controller: controller,
-            onPageChanged: (value) {
-              setState(() {
-                pagePosition = value;
-              });
-            },
-            scrollDirection: Axis.vertical,
-            children: const [
-              Page1(),
-              Page2(),
-              Page3(),
-            ],
-          ),
+        // body: Expanded(): o weidget expanded é pra ser usado dentro de columns/rows, não precisa dele aqui, o body já é todo o espaço entre a appbar e a bottombar, removi
+        body: PageView(
+          controller: controller,
+          onPageChanged: (value) {
+            setState(() {
+              pagePosition = value;
+            });
+          },
+          scrollDirection: Axis.vertical,
+          children: pagesList,
         ),
         bottomNavigationBar: BottomNavigationBar(
             onTap: (value) {
               controller.jumpToPage(value);
             },
             currentIndex: pagePosition,
-            items: const [
-              BottomNavigationBarItem(label: "Pag1", icon: Icon(Icons.home)),
-              BottomNavigationBarItem(label: "Pag2", icon: Icon(Icons.add)),
-              BottomNavigationBarItem(label: "Pag3", icon: Icon(Icons.person)),
-            ]),
+            items: navigationBarList),
       ),
     );
   }

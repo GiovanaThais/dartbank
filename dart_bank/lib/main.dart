@@ -1,4 +1,4 @@
-import 'package:dart_bank/pages/home/login_page.dart';
+import 'package:dart_bank/features/auth/login/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
