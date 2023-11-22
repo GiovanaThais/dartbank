@@ -1,4 +1,4 @@
-import 'package:dart_bank/features/auth/register/register_page.dart';
+import 'package:dart_bank/core/widgets/custom_drawer_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'page1.dart';
@@ -38,56 +38,8 @@ class _HomePageState extends State<HomePage> {
         appBar: AppBar(
           title: const Text("Home"),
         ),
-        drawer: Drawer(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                const SizedBox(
-                  height: 30,
-                ),
-                InkWell(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    width: double.infinity,
-                    child: const Text("Dados cadastráis"),
-                  ),
-                  onTap: () {
-                    Navigator.pop(context);
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const RegisterPage()),
-                    );
-                  },
-                ),
-                const Divider(),
-                const SizedBox(
-                  height: 10,
-                ),
-                InkWell(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    width: double.infinity,
-                    child: const Text("Termos de uso e privacidade"),
-                  ),
-                  onTap: () {},
-                ),
-                const Divider(),
-                const SizedBox(
-                  height: 10,
-                ),
-                InkWell(
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 5),
-                    width: double.infinity,
-                    child: const Text("Configurações"),
-                  ),
-                  onTap: () {},
-                ),
-              ],
-            ),
-          ),
-        ),
+        drawer: const CustomDrawerWidget(),
+
         // body: Expanded(): o weidget expanded é pra ser usado dentro de columns/rows, não precisa dele aqui, o body já é todo o espaço entre a appbar e a bottombar, removi
         body: PageView(
           controller: controller,

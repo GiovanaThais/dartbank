@@ -20,6 +20,7 @@ class _RegisterPageState extends State<RegisterPage> {
   var nameController = TextEditingController(text: "");
   var birthDateController = TextEditingController(text: "");
   var numberIdController = TextEditingController(text: "");
+  var cellController = TextEditingController(text: "");
   var emailController = TextEditingController(text: "");
   var passwordController = TextEditingController(text: "");
   var cepController = TextEditingController(text: "");
@@ -79,10 +80,10 @@ class _RegisterPageState extends State<RegisterPage> {
             ),
           ),
           TextField(
-              controller: emailController,
+              controller: cellController,
               decoration: const InputDecoration(
                   prefixIcon: Icon(
-                Icons.no_cell_rounded,
+                Icons.dialer_sip,
                 color: Color.fromARGB(255, 23, 134, 71),
               ))),
           Padding(
@@ -220,6 +221,9 @@ class _RegisterPageState extends State<RegisterPage> {
               TextField(controller: stateAddController),
             ],
           ),
+          SizedBox(
+            height: 25,
+          ),
           Center(
             child: TextButton(
               // Separar código em um metodo
@@ -233,16 +237,23 @@ class _RegisterPageState extends State<RegisterPage> {
 
   void _onSavePressed() {
     if (nameController.text.trim().length < 3) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Nome deve ser preenchido")));
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Nome deve ser preenchido")));
       return;
     }
     if (birthDate == null) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text("Data de nascimento deve ser preenchida!")));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("Data de nascimento deve ser preenchida!")));
       return;
     }
     if (typeSelected.trim() == "") {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("O tipo de conta deve ser selecionada")));
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text("O tipo de conta deve ser selecionada")));
+      return;
+    }
+    if (cellController.text.trim().length < 3) {
+      ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text("Telefone deve ser adicionado!")));
       return;
     }
     log(nameController.text);
