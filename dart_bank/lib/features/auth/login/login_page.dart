@@ -2,6 +2,8 @@ import 'package:dart_bank/features/auth/register/register_page.dart';
 import 'package:dart_bank/features/home/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/components/wave_clipper.dart';
+
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
 
@@ -47,43 +49,46 @@ class _LoginPageState extends State<LoginPage> {
               children: [
                 Expanded(
                   flex: 45,
-                  child: Container(
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [
-                          Color.fromARGB(255, 171, 213, 168),
-                          Color.fromARGB(255, 92, 184, 92),
-                        ],
+                  child: ClipPath(
+                    clipper: WaveClipper(),
+                    child: Container(
+                      decoration: const BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [
+                            Color.fromARGB(255, 171, 213, 168),
+                            Color.fromARGB(255, 92, 184, 92),
+                          ],
+                        ),
                       ),
-                    ),
-                    child: SizedBox(
-                      width: double.infinity,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            'assets/icon/logo.png',
-                            width: 0.55 *
-                                size.width, // o Image tem tamanho, não precisa colocar expanded com container vazio
-                            height: 0.25 *
-                                size.height, // o Image tem tamanho, não precisa colocar expanded com container vazio
-                          ),
-                          SizedBox(
-                            height: 0.01 * size.height,
-                          ),
-                          const Text('Seja bem-vindo ao Dart Bank!',
-                              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white)),
-                          SizedBox(
-                            height: 0.01 * size.height,
-                          ),
-                          const Text(
-                            "Já possui conta? Identifique-se ",
-                            style: TextStyle(color: Colors.white),
-                          ),
-                        ],
+                      child: SizedBox(
+                        width: double.infinity,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Image.asset(
+                              'assets/icon/logo.png',
+                              width: 0.55 *
+                                  size.width, // o Image tem tamanho, não precisa colocar expanded com container vazio
+                              height: 0.25 *
+                                  size.height, // o Image tem tamanho, não precisa colocar expanded com container vazio
+                            ),
+                            SizedBox(
+                              height: 0.01 * size.height,
+                            ),
+                            const Text('Seja bem-vindo ao Dart Bank!',
+                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white)),
+                            SizedBox(
+                              height: 0.01 * size.height,
+                            ),
+                            const Text(
+                              "Já possui conta? Identifique-se ",
+                              style: TextStyle(color: Colors.white),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
