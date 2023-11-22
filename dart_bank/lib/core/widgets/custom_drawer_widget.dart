@@ -1,6 +1,8 @@
 import 'package:dart_bank/features/auth/register/register_page.dart';
-import 'package:dart_bank/pages/home/login_page.dart';
+
 import 'package:flutter/material.dart';
+
+import '../../features/auth/login/login_page.dart';
 
 class CustomDrawerWidget extends StatelessWidget {
   const CustomDrawerWidget({super.key});
@@ -160,9 +162,14 @@ class CustomDrawerWidget extends StatelessWidget {
                     context: context,
                     builder: (BuildContext bc) {
                       return AlertDialog(
+                        alignment: Alignment.centerLeft,
+                        elevation: 8,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
                         title: const Text("Dart Bank"),
                         content: const Wrap(
                           children: [
+                            Text("Voce sairá do aplicativo!"),
                             Text("Deseja realmente sair do aplicativo?"),
                           ],
                         ),
