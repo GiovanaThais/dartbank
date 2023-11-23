@@ -10,8 +10,12 @@ class Page3 extends StatefulWidget {
 class _Page3State extends State<Page3> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: const Color.fromARGB(255, 12, 125, 97),
+    return ListView(
+      children: [
+        Container(
+          color: Colors.grey,
+        )
+      ],
     );
   }
 }

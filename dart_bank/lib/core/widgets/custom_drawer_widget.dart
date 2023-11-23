@@ -40,10 +40,9 @@ class CustomDrawerWidget extends StatelessWidget {
               },
               child: UserAccountsDrawerHeader(
                   currentAccountPicture: CircleAvatar(
-                    backgroundColor: Color.fromARGB(255, 4, 99, 61),
+                    backgroundColor: Color.fromARGB(255, 239, 255, 248),
                     child: Image.asset(
-                      'assets/icon/logo.png',
-                      color: Colors.white,
+                      'assets/icon/avatar.png',
                       width: 60,
                     ),
                   ),

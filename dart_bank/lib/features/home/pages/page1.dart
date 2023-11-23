@@ -10,8 +10,25 @@ class Page1 extends StatefulWidget {
 class _Page1State extends State<Page1> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: const Color.fromARGB(255, 177, 252, 179),
+    return Column(
+      children: [
+        Container(
+          margin: EdgeInsets.all(16),
+          width: double.infinity,
+          child: const Card(
+              elevation: 7,
+              shadowColor: Colors.green,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Text("Meu card"),
+                  ),
+                ],
+              )),
+        ),
+      ],
     );
   }
 }

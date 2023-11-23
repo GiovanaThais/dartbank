@@ -3,6 +3,7 @@
 import 'dart:developer';
 
 import 'package:dart_bank/core/widgets/text_label_widgets.dart';
+import 'package:dart_bank/features/auth/components/person_components.dart';
 import 'package:flutter/material.dart';
 
 import '../repositories/account_types_repository.dart';
@@ -44,55 +45,66 @@ class _RegisterPageState extends State<RegisterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text("Cadastro")),
+        title: Text("Cadastro"),
       ),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 16.0),
         child: ListView(// Troquei o column por listview pq já tem Scroll
             //crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+          Card(
+            child: ExpansionTile(
+              title: Text("Person Form"),
+              children: const [
+                PersonComponent(),
+              ],
+            ),
+          ),
+          Card(
+            child: ExpansionTile(
+              title: Text("Login Form"),
+              children: const [
+                PersonComponent(),
+              ],
+            ),
+          ),
+          Card(
+            child: ExpansionTile(
+              title: Text("Address Form"),
+              children: const [
+                PersonComponent(),
+              ],
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.only(top: 12.0),
-            child: const TextLabel(
+            child: TextLabel(
+              controller: nameController,
               textlabel: "Nome Completo",
             ),
           ),
-          TextField(
-              controller: nameController,
-              decoration: const InputDecoration(
-                  prefixIcon: Icon(
-                Icons.person,
-                color: Color.fromARGB(255, 23, 134, 71),
-              ))),
           Padding(
             padding: const EdgeInsets.only(top: 12.0),
-            child: const TextLabel(
-              textlabel: "cpf",
+            child: TextLabel(
+              controller: numberIdController,
+              textlabel: "CPF",
             ),
           ),
-          TextField(
-            controller: numberIdController,
-          ),
           Padding(
             padding: const EdgeInsets.only(top: 12.0),
-            child: const TextLabel(
+            child: TextLabel(
+              controller: cellController,
               textlabel: "Telefone",
             ),
           ),
-          TextField(
-              controller: cellController,
-              decoration: const InputDecoration(
-                  prefixIcon: Icon(
-                Icons.dialer_sip,
-                color: Color.fromARGB(255, 23, 134, 71),
-              ))),
           Padding(
             padding: const EdgeInsets.only(top: 12.0),
-            child: TextLabel(textlabel: "Data de nascimento"),
+            child: Text("Data de nascimento:",
+                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
           ),
           TextField(
-            controller: birthDateController,
             readOnly: true,
+            controller: birthDateController,
             onTap: () async {
               var date = await showDatePicker(
                   context: context,
@@ -107,33 +119,30 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 12.0),
-            child: const TextLabel(
-              textlabel: "email",
-            ),
-          ),
-          TextField(
+            child: TextLabel(
               controller: emailController,
-              decoration: const InputDecoration(
-                  prefixIcon: Icon(
-                Icons.email,
-                color: Color.fromARGB(255, 23, 134, 71),
-              ))),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: const TextLabel(
-              textlabel: "senha",
+              textlabel: "Email",
             ),
           ),
-          TextField(
-              controller: passwordController,
-              decoration: const InputDecoration(
-                  prefixIcon: Icon(
-                Icons.key,
-                color: Color.fromARGB(255, 23, 134, 71),
-              ))),
           Padding(
             padding: const EdgeInsets.only(top: 12.0),
-            child: const TextLabel(textlabel: "Tipo de conta:"),
+            child: TextLabel(
+              controller: passwordController,
+              textlabel: "Senha",
+            ),
+          ),
+          SizedBox(
+            width: 20,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 12.0),
+            child: Text(
+              "Tipo de conta:",
+              style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromARGB(255, 63, 64, 64)),
+            ),
           ),
           Column(
               children: types
@@ -152,35 +161,25 @@ class _RegisterPageState extends State<RegisterPage> {
                   .toList()),
           Padding(
             padding: const EdgeInsets.only(top: 12.0),
-            child: const TextLabel(
-              textlabel: "rua",
+            child: TextLabel(
+              controller: streetAddController,
+              textlabel: "Rua",
             ),
-          ),
-          TextField(
-            controller: streetAddController,
-            decoration: const InputDecoration(
-                prefixIcon: Icon(
-              Icons.add_road,
-              color: Color.fromARGB(255, 23, 134, 71),
-            )),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 12.0),
-            child: const TextLabel(
-              textlabel: "bairro",
+            child: TextLabel(
+              controller: neighborhoodAddController,
+              textlabel: "Bairro",
             ),
-          ),
-          TextField(
-            controller: neighborhoodAddController,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 12.0),
-                child: const TextLabel(textlabel: "CEP"),
+                child: TextLabel(controller: cepController, textlabel: "CEP"),
               ),
-              TextField(controller: cepController),
               Row(
                 children: [
                   Expanded(
@@ -190,9 +189,10 @@ class _RegisterPageState extends State<RegisterPage> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(top: 12.0),
-                          child: const TextLabel(textlabel: "Número"),
+                          child: TextLabel(
+                              controller: numberAddController,
+                              textlabel: "Número"),
                         ),
-                        TextField(controller: numberAddController),
                       ],
                     ),
                   ),
@@ -206,9 +206,10 @@ class _RegisterPageState extends State<RegisterPage> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.only(top: 12.0),
-                          child: const TextLabel(textlabel: "Cidade"),
+                          child: TextLabel(
+                              controller: cityAddController,
+                              textlabel: "Cidade"),
                         ),
-                        TextField(controller: cityAddController),
                       ],
                     ),
                   ),
@@ -216,9 +217,9 @@ class _RegisterPageState extends State<RegisterPage> {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 12.0),
-                child: const TextLabel(textlabel: "Estado"),
+                child: TextLabel(
+                    controller: stateAddController, textlabel: "Estado"),
               ),
-              TextField(controller: stateAddController),
             ],
           ),
           SizedBox(
