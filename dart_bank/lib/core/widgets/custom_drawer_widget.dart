@@ -1,4 +1,5 @@
 import 'package:dart_bank/features/auth/register/register_page.dart';
+import 'package:dart_bank/features/home/pages/setting_page.dart';
 
 import 'package:flutter/material.dart';
 
@@ -136,7 +137,13 @@ class CustomDrawerWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              onTap: () {},
+              onTap: () {
+                Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SettingsPage()),
+                );
+              },
             ),
             const Divider(),
             const SizedBox(

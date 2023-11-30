@@ -5,6 +5,7 @@ import 'dart:developer';
 import 'package:dart_bank/core/widgets/text_label_widgets.dart';
 import 'package:dart_bank/features/auth/components/person_components.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../repositories/account_types_repository.dart';
 
@@ -35,10 +36,30 @@ class _RegisterPageState extends State<RegisterPage> {
   var types = [];
   var typeSelected = "";
 
+  late SharedPreferences storage;
+  final String NAME_REGISTRATER_DATA_KEY = "CHAVE_DADOS_CADASTRAIS_NOME";
+  final String NUMBERID_REGISTRATER_DATA_KEY =
+      "CHAVE_DADOS_CADASTRAIS_NUMBERID";
+  final String CELLPHONE_REGISTRATER_DATA_KEY =
+      "CHAVE_DADOS_CADASTRAIS_CELLPHONE";
+  final String BIRTHDATE_REGISTRATER_DATA_KEY =
+      "CHAVE_DADOS_CADASTRAIS_BIRTHDATE";
+  final String EMAIL_REGISTRATER_DATA_KEY = "CHAVE_DADOS_CADASTRAIS_EMAIL";
+  final String PASSWORD_REGISTRATER_DATA_KEY =
+      "CHAVE_DADOS_CADASTRAIS_PASSWORD";
+
+  bool safing = false;
+
   @override
   void initState() {
     super.initState(); // super.initState() sempre no começo
     types = typesRepository.returnTypes();
+    loadData();
+  }
+
+  loadData() async {
+    storage = await SharedPreferences.getInstance();
+    nameController.text = storage.getString(NAME_REGISTRATER_DATA_KEY) ?? "";
   }
 
   @override
@@ -236,7 +257,7 @@ class _RegisterPageState extends State<RegisterPage> {
     );
   }
 
-  void _onSavePressed() {
+  void _onSavePressed() async {
     if (nameController.text.trim().length < 3) {
       ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text("Nome deve ser preenchido")));
@@ -257,6 +278,37 @@ class _RegisterPageState extends State<RegisterPage> {
           const SnackBar(content: Text("Telefone deve ser adicionado!")));
       return;
     }
+
+    await storage.setString(NAME_REGISTRATER_DATA_KEY, nameController.text);
+    await storage.setString(
+        NUMBERID_REGISTRATER_DATA_KEY, numberIdController.text);
+    await storage.setString(
+        CELLPHONE_REGISTRATER_DATA_KEY, cellController.text);
+    await storage.setString(
+        BIRTHDATE_REGISTRATER_DATA_KEY, birthDate.toString());
+    await storage.setString(EMAIL_REGISTRATER_DATA_KEY, emailController.text);
+    await storage.setString(
+        PASSWORD_REGISTRATER_DATA_KEY, passwordController.text);
+
+    setState(() {
+      safing = true;
+    });
+    // Future.delayed(const Duration(seconds: 3), () {
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //     const SnackBar(
+    //       content: Text("Dados salvo com sucesso")));
+    //         setState(() {
+    //             safing = false;
+    //               });
+    //               Navigator.pop(context);
+    //               });
+    //             },
+    //             child: Text("Salvar"),
+    //     ),
+    //     ],
+    //     ),
+    //   }
+
     log(nameController.text);
     log('$birthDate');
     log(typeSelected);
