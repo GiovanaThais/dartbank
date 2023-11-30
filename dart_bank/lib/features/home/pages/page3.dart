@@ -12,9 +12,28 @@ class _Page3State extends State<Page3> {
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        Container(
-          color: Colors.grey,
-        )
+        ListTile(
+          leading: Image.asset('assets/icon/avatar.png'),
+          title: Text("User 1"),
+          subtitle: Text("Olá \n Tudo bem?"),
+          trailing: PopupMenuButton<String>(
+              onSelected: (menu) {},
+              itemBuilder: (BuildContext bc) {
+                return <PopupMenuEntry<String>>[
+                  const PopupMenuItem(
+                    child: Text("Option 1"),
+                    value: "opção 1",
+                  )
+                ];
+              }),
+          isThreeLine: true,
+        ),
+        ListTile(
+          leading: Image.asset('assets/icon/avatar.png'),
+          title: Text("User 2"),
+          subtitle: Text("Olá"),
+          trailing: Icon(Icons.access_time),
+        ),
       ],
     );
   }

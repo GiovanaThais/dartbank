@@ -10,11 +10,11 @@ class Page2 extends StatefulWidget {
 class _Page2State extends State<Page2> {
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return ListView(
       children: [
         Container(
-          color: Color.fromARGB(255, 211, 238, 226),
-        ),
+          color: Colors.grey,
+        )
       ],
     );
   }
