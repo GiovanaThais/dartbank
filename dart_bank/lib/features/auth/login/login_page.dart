@@ -79,7 +79,10 @@ class _LoginPageState extends State<LoginPage> {
                               height: 0.01 * size.height,
                             ),
                             const Text('Seja bem-vindo ao Dart Bank!',
-                                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white)),
+                                style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white)),
                             SizedBox(
                               height: 0.01 * size.height,
                             ),
@@ -111,7 +114,8 @@ class _LoginPageState extends State<LoginPage> {
                           //children: [
                           decoration: const InputDecoration(
                               hintText: "Insira seu email",
-                              hintStyle: TextStyle(color: Color.fromARGB(255, 23, 134, 71)),
+                              hintStyle: TextStyle(
+                                  color: Color.fromARGB(255, 23, 134, 71)),
                               prefixIcon: Icon(
                                 Icons.person,
                                 color: Color.fromARGB(255, 23, 134, 71),
@@ -131,7 +135,8 @@ class _LoginPageState extends State<LoginPage> {
                           style: const TextStyle(color: Colors.black),
                           decoration: InputDecoration(
                               hintText: "Insira sua senha",
-                              hintStyle: const TextStyle(color: Color.fromARGB(255, 23, 134, 71)),
+                              hintStyle: const TextStyle(
+                                  color: Color.fromARGB(255, 23, 134, 71)),
                               prefixIcon: const Icon(
                                 Icons.key,
                                 color: Color.fromARGB(255, 23, 134, 71),
@@ -143,7 +148,9 @@ class _LoginPageState extends State<LoginPage> {
                                   });
                                 },
                                 child: Icon(
-                                  isObscureText ? Icons.visibility_off : Icons.visibility,
+                                  isObscureText
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
                                   color: const Color.fromARGB(255, 23, 134, 71),
                                 ),
                               )),
@@ -163,12 +170,16 @@ class _LoginPageState extends State<LoginPage> {
                                   },
                                   style: ButtonStyle(
                                     shape: MaterialStateProperty.all(
-                                        RoundedRectangleBorder(borderRadius: BorderRadius.circular(10))),
-                                    backgroundColor: MaterialStateProperty.all(const Color.fromARGB(255, 23, 134, 71)),
+                                        RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10))),
+                                    backgroundColor: MaterialStateProperty.all(
+                                        const Color.fromARGB(255, 23, 134, 71)),
                                   ),
                                   child: const Text(
                                     "Entrar",
-                                    style: TextStyle(color: Colors.white, fontSize: 16),
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 16),
                                   ),
                                 ),
                               ),
@@ -178,13 +189,16 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               InkWell(
                                 child: Container(
-                                  margin: const EdgeInsets.symmetric(horizontal: 30),
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 30),
                                   height: 30,
                                   color: Colors.transparent,
                                   alignment: Alignment.center,
                                   child: const Text(
                                     "Esqueci minha senha",
-                                    style: TextStyle(color: Color.fromARGB(255, 23, 134, 71)),
+                                    style: TextStyle(
+                                        color:
+                                            Color.fromARGB(255, 23, 134, 71)),
                                   ),
                                 ),
                                 onTap: () {},
@@ -194,14 +208,17 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                               InkWell(
                                 child: Container(
-                                  margin: const EdgeInsets.symmetric(horizontal: 30),
+                                  margin: const EdgeInsets.symmetric(
+                                      horizontal: 30),
                                   height: 30,
                                   alignment: Alignment.center,
                                   color: Colors.transparent,
                                   child: const Text(
                                     "Cadastre-se",
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold, color: Color.fromARGB(255, 23, 134, 71)),
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        color:
+                                            Color.fromARGB(255, 23, 134, 71)),
                                   ),
                                 ),
                                 onTap: () {
