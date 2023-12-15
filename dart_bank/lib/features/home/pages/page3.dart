@@ -30,9 +30,9 @@ class _Page3State extends State<Page3> {
         ),
         ListTile(
           leading: Image.asset('assets/icon/avatar.png'),
-          title: Text("User 2"),
-          subtitle: Text("Olá"),
-          trailing: Icon(Icons.access_time),
+          title: const Text("User 2"),
+          subtitle: const Text("Olá"),
+          trailing: const Icon(Icons.access_time),
         ),
       ],
     );

@@ -41,14 +41,14 @@ class CustomDrawerWidget extends StatelessWidget {
               },
               child: UserAccountsDrawerHeader(
                   currentAccountPicture: CircleAvatar(
-                    backgroundColor: Color.fromARGB(255, 239, 255, 248),
+                    backgroundColor: const Color.fromARGB(255, 239, 255, 248),
                     child: Image.asset(
                       'assets/icon/avatar.png',
                       width: 60,
                     ),
                   ),
-                  accountName: Text("User"),
-                  accountEmail: Text("email@email.com")),
+                  accountName: const Text("User"),
+                  accountEmail: const Text("email@email.com")),
             ),
             InkWell(
               child: Container(

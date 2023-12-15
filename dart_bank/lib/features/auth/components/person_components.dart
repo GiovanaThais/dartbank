@@ -27,11 +27,11 @@ class _PersonComponentState extends State<PersonComponent> {
   Widget build(BuildContext context) {
     return Card(
       child: Padding(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.only(top: 12.0),
+              padding: const EdgeInsets.only(top: 12.0),
               child: TextLabel(
                 controller: nameController,
                 validator: validateName,
@@ -39,14 +39,14 @@ class _PersonComponentState extends State<PersonComponent> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 12.0),
+              padding: const EdgeInsets.only(top: 12.0),
               child: TextLabel(
                 controller: numberIdController,
                 textlabel: "CPF",
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 12.0),
+              padding: const EdgeInsets.only(top: 12.0),
               child: TextLabel(
                 controller: cellController,
                 textlabel: "Telefone",
