@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -8,10 +9,29 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+  late SharedPreferences storage;
+
   String? userName;
   String? email;
   bool darkTheme = false;
   bool pushNotification = false;
+
+  final PUSH_NOTIFICATION_KEY = "PUSH_NOTIFICATION_KEY";
+  final DARK_THEME_KEY = "DARK_THEME_KEY";
+
+  @override
+  void initState() {
+    super.initState();
+    loadingData();
+  }
+
+  loadingData() async {
+    storage = await SharedPreferences.getInstance();
+    setState(() {
+      pushNotification = storage.getBool(PUSH_NOTIFICATION_KEY) ?? false;
+      darkTheme = storage.getBool(DARK_THEME_KEY) ?? false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +58,14 @@ class _SettingsPageState extends State<SettingsPage> {
                     }),
                 Center(
                     child: TextButton(
-                        onPressed: () {}, child: const Text("Salvar")))
+                        onPressed: () async {
+                          await storage.setBool(
+                              PUSH_NOTIFICATION_KEY, pushNotification);
+
+                          await storage.setBool(DARK_THEME_KEY, darkTheme);
+                          Navigator.pop(context);
+                        },
+                        child: const Text("Salvar")))
               ]),
             )));
   }
