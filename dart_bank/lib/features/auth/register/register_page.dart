@@ -4,6 +4,7 @@ import 'dart:developer';
 
 import 'package:dart_bank/core/widgets/text_label_widgets.dart';
 import 'package:dart_bank/features/auth/components/person_components.dart';
+import 'package:dart_bank/services/app_storage_service.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -36,17 +37,15 @@ class _RegisterPageState extends State<RegisterPage> {
   var types = [];
   var typeSelected = "";
 
-  late SharedPreferences storage;
-  final String NAME_REGISTRATER_DATA_KEY = "CHAVE_DADOS_CADASTRAIS_NOME";
-  final String NUMBERID_REGISTRATER_DATA_KEY =
-      "CHAVE_DADOS_CADASTRAIS_NUMBERID";
+  AppStorageService storage = AppStorageService();
+  final String NAME_REGISTRATER_DATA_KEY = "NAME_REGISTRATER_DATA_KEY";
+  final String NUMBERID_REGISTRATER_DATA_KEY = "NUMBERID_REGISTRATER_DATA_KEY";
   final String CELLPHONE_REGISTRATER_DATA_KEY =
-      "CHAVE_DADOS_CADASTRAIS_CELLPHONE";
+      "CELLPHONE_REGISTRATER_DATA_KEY";
   final String BIRTHDATE_REGISTRATER_DATA_KEY =
-      "CHAVE_DADOS_CADASTRAIS_BIRTHDATE";
-  final String EMAIL_REGISTRATER_DATA_KEY = "CHAVE_DADOS_CADASTRAIS_EMAIL";
-  final String PASSWORD_REGISTRATER_DATA_KEY =
-      "CHAVE_DADOS_CADASTRAIS_PASSWORD";
+      "BIRTHDATE_REGISTRATER_DATA_KEY";
+  final String EMAIL_REGISTRATER_DATA_KEY = "EMAIL_REGISTRATER_DATA_KEY";
+  final String PASSWORD_REGISTRATER_DATA_KEY = "PASSWORD_REGISTRATER_DATA_KEY";
 
   bool safing = false;
 
@@ -58,8 +57,18 @@ class _RegisterPageState extends State<RegisterPage> {
   }
 
   loadData() async {
-    storage = await SharedPreferences.getInstance();
-    nameController.text = storage.getString(NAME_REGISTRATER_DATA_KEY) ?? "";
+    nameController.text = await storage.getRegisterDataName();
+    emailController.text = await storage.getRegisterEmail();
+    passwordController.text = await storage.getRegisterPassword();
+    numberIdController.text = await storage.getRegisterNumberId();
+    birthDateController.text = await storage.getRegisterBirthday();
+    if (birthDateController.text.isNotEmpty) {
+      birthDate = DateTime.parse(birthDateController.text);
+    }
+
+    cellController.text = await storage.getRegisterCellphone();
+
+    setState(() {});
   }
 
   @override
@@ -279,16 +288,12 @@ class _RegisterPageState extends State<RegisterPage> {
       return;
     }
 
-    await storage.setString(NAME_REGISTRATER_DATA_KEY, nameController.text);
-    await storage.setString(
-        NUMBERID_REGISTRATER_DATA_KEY, numberIdController.text);
-    await storage.setString(
-        CELLPHONE_REGISTRATER_DATA_KEY, cellController.text);
-    await storage.setString(
-        BIRTHDATE_REGISTRATER_DATA_KEY, birthDate.toString());
-    await storage.setString(EMAIL_REGISTRATER_DATA_KEY, emailController.text);
-    await storage.setString(
-        PASSWORD_REGISTRATER_DATA_KEY, passwordController.text);
+    await storage.setRegisterDataName(nameController.text);
+    await storage.setRegisterNumberId(numberIdController.text);
+    await storage.setRegisterCellphone(cellController.text);
+    await storage.setRegisterBirthday(birthDateController.text);
+    await storage.setRegisterEmail(emailController.text);
+    await storage.setRegisterPassword(passwordController.text);
 
     setState(() {
       safing = true;

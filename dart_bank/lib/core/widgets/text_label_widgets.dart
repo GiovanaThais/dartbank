@@ -20,7 +20,8 @@ class TextLabel extends StatelessWidget {
         validator: validator,
         decoration: InputDecoration(
             labelText: textlabel,
-            labelStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+            labelStyle:
+                const TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
       ),
     );
   }

@@ -14,15 +14,15 @@ class _Page3State extends State<Page3> {
       children: [
         ListTile(
           leading: Image.asset('assets/icon/avatar.png'),
-          title: Text("User 1"),
-          subtitle: Text("Olá \n Tudo bem?"),
+          title: const Text("User 1"),
+          subtitle: const Text("Olá \n Tudo bem?"),
           trailing: PopupMenuButton<String>(
               onSelected: (menu) {},
               itemBuilder: (BuildContext bc) {
                 return <PopupMenuEntry<String>>[
                   const PopupMenuItem(
-                    child: Text("Option 1"),
                     value: "opção 1",
+                    child: Text("Option 1"),
                   )
                 ];
               }),
