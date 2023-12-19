@@ -38,9 +38,9 @@ class _CardDetailWidgetState extends State<CardDetailWidget> {
               children: [
                 Row(
                   children: [
-                    Image.network(
+                    Image.asset(
                       widget.cardDetail!.url,
-                      height: 20,
+                      height: 50,
                     ),
                     Text(
                       widget.cardDetail!.title,

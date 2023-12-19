@@ -30,7 +30,7 @@ class _CardDetailState extends State<CardDetail> {
                   icon: const Icon(Icons.close)),
               Row(
                 children: [
-                  Image.network(
+                  Image.asset(
                     widget.cardDetail.url,
                     height: 100,
                   ),

@@ -7,19 +7,17 @@ class TaskModel {
 
   TaskModel(this._description, this._done);
 
-  String getId() {
-    return _id;
+  String get id => _id;
+
+  String get description => _description;
+
+  set description(String description) {
+    _description = description;
   }
 
-  String getDescription(description) {
-    return _description;
+  bool get done => _done;
+
+  set done(bool done) {
+    _done = done;
   }
-
-  void setDescription(String description) => _description = description;
-
-  bool getDone() {
-    return _done;
-  }
-
-  void setDone(bool done) => _done = done;
 }

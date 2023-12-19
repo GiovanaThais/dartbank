@@ -10,12 +10,12 @@ class TaskRepository {
 
   Future<void> putTask(String id, bool done) async {
     await Future.delayed(const Duration(milliseconds: 100));
-    _tasks.where((task) => task.getId() == id).first.setDone(done);
+    _tasks.where((task) => task.id == id).first.done = done;
   }
 
   Future<void> removeTask(String id) async {
     await Future.delayed(const Duration(milliseconds: 100));
-    _tasks.remove(_tasks.where((task) => task.getId() == id).first);
+    _tasks.remove(_tasks.where((task) => task.id == id).first);
   }
 
   Future<List<TaskModel>> listTask() async {
@@ -25,6 +25,6 @@ class TaskRepository {
 
   Future<List<TaskModel>> notDoneList() async {
     await Future.delayed(const Duration(milliseconds: 100));
-    return _tasks.where((task) => !task.getDone()).toList();
+    return _tasks.where((task) => !task.done).toList();
   }
 }

@@ -1,6 +1,9 @@
+import 'package:dart_bank/core/themes/light/light_colors.dart';
 import 'package:dart_bank/features/auth/login/login_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+import 'core/themes/app_theme.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
@@ -18,9 +21,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-          // This is the theme of your application.
-          primarySwatch: Colors.green,
-          brightness: Brightness.light),
+          primarySwatch: LightColors.green, brightness: Brightness.light),
+      //theme: AppTheme.light,
       home: const LoginPage(),
     );
   }

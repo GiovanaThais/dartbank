@@ -19,9 +19,9 @@ class MyAppBar extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Image.network(
-                    'https://icones.pro/wp-content/uploads/2021/10/symbole-bancaire-vert.png',
-                    height: 40,
+                  Image.asset(
+                    'assets/icon/logo.png',
+                    height: 20,
                   ),
                   const SizedBox(
                     width: 10,
