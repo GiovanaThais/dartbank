@@ -2,6 +2,8 @@
 
 import 'dart:developer';
 
+import 'package:brasil_fields/brasil_fields.dart';
+import 'package:dart_bank/core/widgets/formatters_widget.dart';
 import 'package:dart_bank/core/widgets/text_label_widgets.dart';
 import 'package:dart_bank/features/auth/components/person_components.dart';
 import 'package:dart_bank/services/app_storage_service.dart';
@@ -115,16 +117,18 @@ class _RegisterPageState extends State<RegisterPage> {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 12.0),
-            child: TextLabel(
+            child: TextLabelFormatter(
               controller: numberIdController,
-              textlabel: "CPF",
+              textlabelFormatter: "CPF",
+              formatter: CpfInputFormatter(),
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 12.0),
-            child: TextLabel(
+            child: TextLabelFormatter(
               controller: cellController,
-              textlabel: "Telefone",
+              textlabelFormatter: "Telefone",
+              formatter: TelefoneInputFormatter(),
             ),
           ),
           Padding(
@@ -208,7 +212,11 @@ class _RegisterPageState extends State<RegisterPage> {
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 12.0),
-                child: TextLabel(controller: cepController, textlabel: "CEP"),
+                child: TextLabelFormatter(
+                  controller: cepController,
+                  textlabelFormatter: "CEP",
+                  formatter: CepInputFormatter(),
+                ),
               ),
               Row(
                 children: [

@@ -41,6 +41,16 @@ class CustomDrawerWidget extends StatelessWidget {
         const SizedBox(
           height: 10,
         ),
+        translateMethod(context),
+        const Divider(),
+        const SizedBox(
+          height: 10,
+        ),
+        sharedMethod(context),
+        const Divider(),
+        const SizedBox(
+          height: 10,
+        ),
         exitMethod(context),
       ],
     );
@@ -232,4 +242,60 @@ class CustomDrawerWidget extends StatelessWidget {
           accountEmail: const Text("email@email.com")),
     );
   }
+}
+
+InkWell translateMethod(BuildContext context) {
+  return InkWell(
+    child: Container(
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      width: double.infinity,
+      child: const Row(
+        children: [
+          FaIcon(
+            FontAwesomeIcons.earthAmericas,
+            color: Colors.green,
+          ),
+          SizedBox(
+            width: 5,
+          ),
+          Text("pt-BR"),
+        ],
+      ),
+    ),
+    onTap: () {
+      Navigator.pop(context); //TODO: MUDAR PARA DRAWERCLOSE
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const SettingsPage()),
+      );
+    },
+  );
+}
+
+InkWell sharedMethod(BuildContext context) {
+  return InkWell(
+    child: Container(
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      width: double.infinity,
+      child: const Row(
+        children: [
+          FaIcon(
+            FontAwesomeIcons.share,
+            color: Colors.green,
+          ),
+          SizedBox(
+            width: 5,
+          ),
+          Text("Compartilhar"),
+        ],
+      ),
+    ),
+    onTap: () {
+      Navigator.pop(context); //TODO: MUDAR PARA DRAWERCLOSE
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const SettingsPage()),
+      );
+    },
+  );
 }

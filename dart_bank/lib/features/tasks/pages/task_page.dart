@@ -93,7 +93,7 @@ class _TaskPageState extends State<TaskPage> {
                   onPressed: () async {
                     await taskRepository
                         .addTask(TaskModel(descriptionController.text, false));
-                    Navigator.pop(context);
+                    //Navigator.pop(context);
                     setState(() {});
                   },
                   child: const Text("Salvar"))

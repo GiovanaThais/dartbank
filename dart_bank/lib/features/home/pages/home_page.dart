@@ -1,10 +1,12 @@
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:dart_bank/core/widgets/custom_drawer_widget.dart';
 import 'package:dart_bank/features/home/pages/page4.dart';
+import 'package:dart_bank/features/tasks/pages/task_page.dart';
 import 'package:flutter/material.dart';
 
 import 'card_page.dart';
-import 'page2.dart';
-import 'page3.dart';
+import 'percent_indicator_page/page2.dart';
+import 'chat/page3.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key, required this.title}) : super(key: key);
@@ -24,14 +26,16 @@ class _HomePageState extends State<HomePage> {
     const CardPage(),
     const Page2(),
     const Page3(),
-    const Page4()
+    const Page4(),
+    const TaskPage()
   ];
 
   final navigationBarList = const [
-    BottomNavigationBarItem(label: "Cards", icon: Icon(Icons.home)),
-    BottomNavigationBarItem(label: "Pag2", icon: Icon(Icons.add)),
-    BottomNavigationBarItem(label: "Pag3", icon: Icon(Icons.person)),
-    BottomNavigationBarItem(label: "Pag4", icon: Icon(Icons.accessible)),
+    TabItem(title: "Cards", icon: Icon(Icons.home)),
+    TabItem(title: "Pag2", icon: Icon(Icons.add)),
+    TabItem(title: "Pag3", icon: Icon(Icons.person)),
+    TabItem(title: "Pag4", icon: Icon(Icons.photo_album)),
+    TabItem(title: "Tarefas", icon: Icon(Icons.task)),
   ];
 
   @override
@@ -39,7 +43,7 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Home"),
+          title: const Text("DartBank"),
         ),
         drawer: const CustomDrawerWidget(),
 
@@ -54,13 +58,17 @@ class _HomePageState extends State<HomePage> {
           scrollDirection: Axis.vertical,
           children: pagesList,
         ),
-        bottomNavigationBar: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            onTap: (value) {
-              controller.jumpToPage(value);
-            },
-            currentIndex: pagePosition,
-            items: navigationBarList),
+        bottomNavigationBar: ConvexAppBar(
+          style: TabStyle.reactCircle,
+          //convertido BottomNavigationBarItem em tabItem
+          items: navigationBarList,
+          backgroundColor: Colors.green,
+          onTap: (int value) {
+            controller.jumpToPage(value);
+          },
+          color: Colors.white,
+          initialActiveIndex: pagePosition,
+        ),
       ),
     );
   }

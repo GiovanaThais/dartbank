@@ -26,6 +26,12 @@ class _Page2State extends State<Page2> {
             animationDuration: 1200,
             circularStrokeCap: CircularStrokeCap.round,
           ),
+        ),
+        Card(
+          child: Container(
+            color: Color.fromARGB(255, 180, 239, 192),
+            child: Text("Saldo atual:"),
+          ),
         )
       ],
     );

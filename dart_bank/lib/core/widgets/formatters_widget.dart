@@ -2,17 +2,18 @@ import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class TextLabel extends StatelessWidget {
-  const TextLabel({
-    super.key,
-    required this.textlabel,
-    required this.controller,
-    this.validator,
-  });
+class TextLabelFormatter extends StatelessWidget {
+  const TextLabelFormatter(
+      {super.key,
+      required this.textlabelFormatter,
+      required this.controller,
+      this.validator,
+      required this.formatter});
 
-  final String textlabel;
+  final String textlabelFormatter;
   final String? Function(String? value)? validator;
   final TextEditingController controller;
+  final TextInputFormatter formatter;
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +22,12 @@ class TextLabel extends StatelessWidget {
       child: TextFormField(
         controller: controller,
         validator: validator,
+        inputFormatters: [
+          FilteringTextInputFormatter.digitsOnly,
+          formatter,
+        ],
         decoration: InputDecoration(
-            labelText: textlabel,
+            labelText: textlabelFormatter,
             labelStyle:
                 const TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
       ),

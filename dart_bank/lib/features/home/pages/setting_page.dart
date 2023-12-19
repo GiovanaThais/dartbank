@@ -59,7 +59,7 @@ class _SettingsPageState extends State<SettingsPage> {
                               .setSettingsPushNotifier(pushNotification);
 
                           await storage.setSettingsDarkTheme(darkTheme);
-                          Navigator.pop(context);
+                          //Navigator.pop(context);
                         },
                         child: const Text("Salvar")))
               ]),

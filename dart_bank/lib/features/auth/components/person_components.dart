@@ -53,7 +53,7 @@ class _PersonComponentState extends State<PersonComponent> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 12.0),
+              padding: const EdgeInsets.only(top: 12.0),
               child: TextLabel(
                   controller: birthDateController,
                   textlabel: "Data de nascimento"),
