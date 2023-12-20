@@ -260,13 +260,12 @@ InkWell translateMethod(BuildContext context) {
       child: const Row(
         children: [
           FaIcon(
-            FontAwesomeIcons.flag,
-            color: Colors.green,
+            FontAwesomeIcons.earthAmericas,
           ),
           SizedBox(
             width: 5,
           ),
-          Text("pt-BR"),
+          Text("Traduzir"),
         ],
       ),
     ),
@@ -289,7 +288,6 @@ InkWell sharedMethod(BuildContext context) {
         children: [
           FaIcon(
             FontAwesomeIcons.share,
-            color: Colors.green,
           ),
           SizedBox(
             width: 5,
@@ -317,7 +315,6 @@ InkWell sharedSitesMethod(BuildContext context) {
         children: [
           FaIcon(
             FontAwesomeIcons.mapLocationDot,
-            color: Colors.green,
           ),
           SizedBox(
             width: 5,

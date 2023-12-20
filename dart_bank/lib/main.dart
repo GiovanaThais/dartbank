@@ -12,11 +12,10 @@ void main() async {
   await EasyLocalization.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(
       const SystemUiOverlayStyle(statusBarBrightness: Brightness.light));
-  runApp(
-      // EasyLocalization(
-      //   supportedLocales: const [Locale('en', 'US'), Locale('pt', 'BR')],
-      // path:
-      //   'assets/translations', // <-- change the path of the translation files
-      //fallbackLocale: const Locale('pt', 'BR'),
-      const MyApp());
+  runApp(EasyLocalization(
+      supportedLocales: const [Locale('en', 'US'), Locale('pt', 'BR')],
+      path:
+          'assets/translations', // <-- change the path of the translation files
+      fallbackLocale: const Locale('pt', 'BR'),
+      child: const MyApp()));
 }
