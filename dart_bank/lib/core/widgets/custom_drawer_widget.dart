@@ -3,8 +3,11 @@ import 'package:dart_bank/features/home/pages/setting_page.dart';
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../features/auth/login/login_page.dart';
+
+import 'package:share_plus/share_plus.dart';
 
 class CustomDrawerWidget extends StatelessWidget {
   const CustomDrawerWidget({super.key});
@@ -47,6 +50,11 @@ class CustomDrawerWidget extends StatelessWidget {
           height: 10,
         ),
         sharedMethod(context),
+        const Divider(),
+        const SizedBox(
+          height: 10,
+        ),
+        sharedSitesMethod(context),
         const Divider(),
         const SizedBox(
           height: 10,
@@ -252,7 +260,7 @@ InkWell translateMethod(BuildContext context) {
       child: const Row(
         children: [
           FaIcon(
-            FontAwesomeIcons.earthAmericas,
+            FontAwesomeIcons.flag,
             color: Colors.green,
           ),
           SizedBox(
@@ -296,6 +304,31 @@ InkWell sharedMethod(BuildContext context) {
         context,
         MaterialPageRoute(builder: (context) => const SettingsPage()),
       );
+    },
+  );
+}
+
+InkWell sharedSitesMethod(BuildContext context) {
+  return InkWell(
+    child: Container(
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      width: double.infinity,
+      child: const Row(
+        children: [
+          FaIcon(
+            FontAwesomeIcons.mapLocationDot,
+            color: Colors.green,
+          ),
+          SizedBox(
+            width: 5,
+          ),
+          Text("Abrir Google Maps"),
+        ],
+      ),
+    ),
+    onTap: () async {
+      Navigator.pop(context); //TODO: MUDAR PARA DRAWERCLOSE
+      await launchUrl(Uri.parse("google.navigation:q=Orlando FL&mode=d"));
     },
   );
 }
