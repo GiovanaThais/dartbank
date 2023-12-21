@@ -287,7 +287,7 @@ InkWell sharedMethod(BuildContext context) {
       child: const Row(
         children: [
           FaIcon(
-            FontAwesomeIcons.share,
+            FontAwesomeIcons.shareNodes,
           ),
           SizedBox(
             width: 5,
@@ -297,10 +297,8 @@ InkWell sharedMethod(BuildContext context) {
       ),
     ),
     onTap: () {
-      Navigator.pop(context); //TODO: MUDAR PARA DRAWERCLOSE
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const SettingsPage()),
+      Share.share(
+        'Olhem esse site, que legal! https://www.bcb.gov.br/estabilidadefinanceira/bancoscaixaseconomicas',
       );
     },
   );
